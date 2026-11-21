@@ -1,0 +1,4 @@
+text
+GitHub Collaboration Test
+Name: Charles Angelo E. Golde
+Status: Successfully cloned the repository.

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Library System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- =====================  TOP NAVIGATION  ===================== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#" class="brand" data-view="home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+      </span>
+      <span class="brand-text">Online Library System</span>
+    </a>
+
+    <nav class="mainnav" id="mainnav">
+      <a href="#" class="nav-link" data-view="home">Home</a>
+      <a href="#" class="nav-link" data-view="browse">Browse Books</a>
+      <a href="#" class="nav-link" data-view="borrowed">My Borrowed Books</a>
+      <a href="#" class="nav-link" data-view="reservations">My Reservations</a>
+      <a href="#" class="nav-link" data-view="history">Transaction History</a>
+      <a href="#" class="nav-link" data-view="penalties">Penalties</a>
+    </nav>
+
+    <div class="topbar-right">
+      <!-- Profile button - top-right corner -->
+      <div class="profile" id="profileWrap">
+        <button class="profile-btn" id="profileBtn" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="avatar" id="profileAvatar">?</span>
+          <span class="profile-name" id="profileName">Guest</span>
+          <span class="caret"></span>
+        </button>
+        <div class="dropdown" id="profileDropdown" role="menu" hidden>
+          <div class="dropdown-header">
+            <div class="dropdown-name" id="ddName">Not signed in</div>
+            <div class="dropdown-sub" id="ddId"></div>
+          </div>
+          <button class="dropdown-item" data-action="profile-details" role="menuitem">Profile Details</button>
+          <button class="dropdown-item" data-action="history" role="menuitem">Transaction History</button>
+          <button class="dropdown-item" data-action="receipts" role="menuitem">Digital Receipts</button>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item danger" data-action="logout" role="menuitem">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- =====================  MAIN CONTENT  ===================== -->
+<main id="view">
+
+  <!-- ============ HOME ============ -->
+  <section class="view" id="view-home">
+    <div class="hero">
+      <div class="hero-inner">
+        <h1>Welcome to the Online Library System</h1>
+        <p class="hero-sub">
+          Explore our collection of books, find your next read, and enjoy a simple and convenient way to discover knowledge through our online library.
+        </p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" data-action="go-browse">Browse Books</button>
+          <button class="btn btn-secondary" data-action="go-auth">Sign In / Register</button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num" id="statBooks">--</div>
+            <div class="stat-lbl">Books in Catalog</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" id="statAvailable">--</div>
+            <div class="stat-lbl">Available Now</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-lbl">Day Borrow Period</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2</div>
+            <div class="stat-lbl">Books Max Per Student</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="features">
+        <h2>What you can do</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>Borrow Books</h3>
+            <p>Borrow available books for three days. Each borrowing generates a unique digital receipt that is saved permanently to your profile.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Reserve Books</h3>
+            <p>Reserve any available book so other students cannot borrow it. Cancel your reservation any time before it is converted to a borrowing.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Track Penalties</h3>
+            <p>Overdue books are charged at &#8369;10 per day. Damage penalties of &#8369;50 / &#8369;150 / &#8369;300 are applied on return.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Extend Once</h3>
+            <p>Each borrowing can be extended exactly once for an additional two days. The extension status is shown on every record.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AUTH (login / register) ============ -->
+  <section class="view hidden" id="view-auth">
+    <div class="auth-screen">
+      <div class="auth-brand">
+        <h1>Welcome!</h1>
+        <p class="muted">Sign in or create an account to start borrowing books.</p>
+      </div>
+      <div class="container narrow">
+        <div class="card">
+          <div class="tabs">
+            <button class="tab active" data-tab="login">Sign In</button>
+            <button class="tab" data-tab="register">Register</button>
+          </div>
+
+        <!-- LOGIN -->
+        <form id="loginForm" class="auth-form">
+          <h2>Sign In</h2>
+          <p class="muted">Enter your 8-digit Student ID Number to access your account.</p>
+          <label>
+            <span>Student ID Number <span class="hint">(exactly 8 digits, e.g. 20231234)</span></span>
+            <input type="text" name="studentId" autocomplete="off" required
+                   pattern="[0-9]{8}" maxlength="8" inputmode="numeric"
+                   placeholder="20231234" />
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Sign In</button>
+          </div>
+        </form>
+
+        <!-- REGISTER -->
+        <form id="registerForm" class="auth-form hidden">
+          <h2>Create Account</h2>
+          <p class="muted">All three fields below are required. None may be left empty.</p>
+          <label>
+            <span>Student ID Number <span class="hint">(exactly 8 digits, e.g. 20231234)</span></span>
+            <input type="text" name="studentId" autocomplete="off" required
+                   pattern="[0-9]{8}" maxlength="8" inputmode="numeric"
+                   placeholder="20231234" />
+          </label>
+          <label>
+            <span>Full Name <span class="hint">(must include first name AND surname)</span></span>
+            <input type="text" name="fullName" autocomplete="off" required
+                   placeholder="Juan Dela Cruz" />
+          </label>
+          <label>
+            <span>Phone Number</span>
+            <input type="tel" name="phone" autocomplete="off" required
+                   placeholder="09171234567" />
+          </label>
+          <label class="checkbox-line">
+            <input type="checkbox" name="agreeTerms" />
+            <span>I have read and agree to the <a href="#" id="openTerms">Terms and Conditions</a>.</span>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Register</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BROWSE BOOKS ============ -->
+  <section class="view hidden" id="view-browse">
+    <div class="container">
+      <div class="page-head">
+        <h1>Browse Books</h1>
+        <p class="muted">Search by title, author, or category. Borrow or reserve any available book.</p>
+      </div>
+
+      <div class="filters">
+        <input type="search" id="searchInput" placeholder="Search by title, author, or category..." />
+        <select id="categoryFilter">
+          <option value="all">All Categories</option>
+        </select>
+        <button class="btn btn-secondary" id="clearFilters">Clear</button>
+      </div>
+
+      <div id="catalogGrid" class="book-grid">
+        <div class="empty-state">Loading books...</div>
+      </div>
+      <p class="catalog-tip muted">Tip: double-click any book card to view its full summary, status, and available actions.</p>
+    </div>
+  </section>
+
+  <!-- ============ MY BORROWED BOOKS ============ -->
+  <section class="view hidden" id="view-borrowed">
+    <div class="container">
+      <div class="page-head">
+        <h1>My Borrowed Books</h1>
+        <p class="muted">Books you are currently borrowing. You may return or extend each book once.</p>
+      </div>
+      <div id="borrowedList" class="record-list">
+        <div class="empty-state">Sign in to see your borrowed books.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MY RESERVATIONS ============ -->
+  <section class="view hidden" id="view-reservations">
+    <div class="container">
+      <div class="page-head">
+        <h1>My Reservations</h1>
+        <p class="muted">Active and past reservations. Cancel an active reservation to release the book.</p>
+      </div>
+      <div id="reservationList" class="record-list">
+        <div class="empty-state">Sign in to see your reservations.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRANSACTION HISTORY ============ -->
+  <section class="view hidden" id="view-history">
+    <div class="container">
+      <div class="page-head">
+        <h1>Transaction History</h1>
+        <p class="muted">All your borrowing transactions and reservations, including returned books and canceled reservations.</p>
+      </div>
+      <div id="historyList" class="record-list">
+        <div class="empty-state">Sign in to see your transaction history.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROFILE DETAILS ============ -->
+  <section class="view hidden" id="view-profile-details">
+    <div class="container narrow">
+      <div class="card">
+        <div class="page-head">
+          <h1>Profile Details</h1>
+        </div>
+        <div id="profileDetails" class="profile-details">
+          <div class="empty-state">Sign in to view your profile.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RECEIPTS LIST ============ -->
+  <section class="view hidden" id="view-receipts">
+    <div class="container">
+      <div class="page-head">
+        <h1>Digital Receipts</h1>
+        <p class="muted">Every successful borrowing generates a permanent receipt. Click any receipt to view it.</p>
+      </div>
+      <div id="receiptsList" class="record-list">
+        <div class="empty-state">Sign in to see your receipts.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PENALTIES ============ -->
+  <section class="view hidden" id="view-penalties">
+    <div class="container">
+      <div class="page-head">
+        <h1>Penalties</h1>
+        <p class="muted">All penalties on your account. Lost-book and expired-reservation penalties block borrowing until settled.</p>
+      </div>
+      <div id="blockBanner" class="hidden" style="background:var(--red-light);border-left:4px solid var(--red);padding:12px 16px;border-radius:var(--radius);margin-bottom:16px;color:var(--red-dark);font-size:.92rem;"></div>
+      <div id="penaltiesList" class="record-list">
+        <div class="empty-state">Sign in to see your penalties.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- =====================  RECEIPT MODAL  ===================== -->
+<div class="modal-backdrop hidden" id="receiptModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Digital Borrowing Receipt</h2>
+      <button class="modal-close" id="closeReceiptModal" aria-label="Close receipt">&times;</button>
+    </div>
+    <div class="modal-body" id="receiptBody">
+      <!-- filled by JS -->
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-primary" id="closeReceiptBtn">Close Receipt</button>
+    </div>
+    <div class="modal-note">Closing this receipt does NOT delete it. It remains in your profile and transaction history.</div>
+  </div>
+</div>
+
+<!-- =====================  BOOK DETAILS MODAL  ===================== -->
+<div class="modal-backdrop hidden" id="bookDetailsModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Book Details</h2>
+      <button class="modal-close" id="closeBookDetails" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body" id="bookDetailsBody">
+      <!-- filled by JS -->
+    </div>
+    <div class="modal-foot" id="bookDetailsFoot">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- =====================  CONFIRM DIALOG  ===================== -->
+<div class="modal-backdrop hidden" id="confirmModal">
+  <div class="modal modal-sm">
+    <div class="modal-head">
+      <h2 id="confirmTitle">Please Confirm</h2>
+    </div>
+    <div class="modal-body">
+      <p id="confirmText">Are you sure?</p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-secondary" id="confirmCancel">Cancel</button>
+      <button class="btn btn-danger" id="confirmOk">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- =====================  RETURN-WITH-DAMAGE MODAL  ===================== -->
+<div class="modal-backdrop hidden" id="returnModal">
+  <div class="modal modal-sm">
+    <div class="modal-head">
+      <h2>Return Book</h2>
+      <button class="modal-close" id="closeReturnModal" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p id="returnText">Select the condition of the returned book.</p>
+      <label>
+        <span>Damage Category</span>
+        <select id="damageCategory">
+          <option value="none">None &mdash; book is in good condition</option>
+          <option value="minor">Minor damage (&#8369;50)</option>
+          <option value="moderate">Moderate damage (&#8369;150)</option>
+          <option value="severe">Severe damage (&#8369;300)</option>
+        </select>
+      </label>
+      <div class="penalty-hint muted">Damage penalties are calculated by the Java backend.</div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-secondary" id="returnCancel">Cancel</button>
+      <button class="btn btn-primary" id="returnConfirm">Return Book</button>
+    </div>
+  </div>
+</div>
+
+<!-- =====================  TERMS MODAL  ===================== -->
+<div class="modal-backdrop hidden" id="termsModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Terms and Conditions of Use</h2>
+      <button class="modal-close" id="closeTermsModal" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body terms-body">
+      <p class="terms-intro">
+        Please read these Terms and Conditions carefully before using the Online
+        Library System. By registering an account and signing in, you acknowledge
+        that you have read, understood, and agreed to be bound by the terms set
+        out below.
+      </p>
+
+      <h3>1. Account Registration</h3>
+      <ul>
+        <li>You must provide a valid Student ID Number consisting of exactly eight (8) digits. Email addresses, letters, and special characters are not accepted.</li>
+        <li>You must provide your complete Full Name, including both your given name and your surname. Registrations that omit the surname will be rejected.</li>
+        <li>You must provide a contact Phone Number so the library can reach you regarding overdue books or reservations.</li>
+        <li>All three fields (Student ID, Full Name, Phone) are mandatory. None may be left empty.</li>
+        <li>You are responsible for keeping your Student ID confidential. Sharing your Student ID allows others to access your account.</li>
+      </ul>
+
+      <h3>2. Borrowing Limits and Period</h3>
+      <ul>
+        <li>Each student may hold a maximum of two (2) active borrowings at any time.</li>
+        <li>A student may not borrow a new book while they already have any unreturned book. Because this rule applies to every unreturned book, in practice a student can only have one active borrowing at a time. The maximum of two books is retained as an absolute ceiling.</li>
+        <li>The initial borrowing period is three (3) days, starting from the date the book is borrowed.</li>
+        <li>Each borrowing record may be extended exactly once, for an additional two (2) days. A second extension is not permitted under any circumstances.</li>
+        <li>A book that is currently Borrowed or Reserved cannot be borrowed by another student until it is returned or the reservation is canceled.</li>
+      </ul>
+
+      <h3>3. Reservations</h3>
+      <ul>
+        <li>You may reserve any book whose status is Available.</li>
+        <li>A reserved book cannot be borrowed or reserved by another student.</li>
+        <li>You may convert one of your active reservations into a borrowing at any time, subject to the borrowing limits in Section 2.</li>
+        <li>You may cancel an active reservation at any time. Canceled reservations are preserved in your transaction history.</li>
+        <li>Reservations that have already been converted into a borrowing (status: Completed) cannot be canceled.</li>
+      </ul>
+
+      <h3>4. Returns</h3>
+      <ul>
+        <li>You may return a borrowed book at any time before or after its due date.</li>
+        <li>Upon return, the borrowing record is preserved in your transaction history. Returned books are not removed from your records.</li>
+        <li>If the returned book has sustained damage, the appropriate damage penalty (see Section 6) will be applied and recorded against your account.</li>
+      </ul>
+
+      <h3>5. Overdue Penalties</h3>
+      <ul>
+        <li>Books not returned by their due date are considered overdue.</li>
+        <li>An overdue penalty of <strong>PHP 20.00 (&#8369;20) per completed overdue day</strong> is charged to your account.</li>
+        <li>For example, a book that is one full day overdue incurs a penalty of &#8369;20; a book five full days overdue incurs &#8369;100.</li>
+        <li>Overdue penalties are calculated by the system based on the recorded due date and the current date. Penalties submitted by the browser are never trusted.</li>
+        <li>A student who has not returned an overdue book cannot borrow or reserve another book until the overdue book is returned and the penalty is settled.</li>
+        <li>Penalties are recorded as unpaid until a payment feature is implemented. The system will never claim a penalty has been paid.</li>
+      </ul>
+
+      <h3>6. Damage Penalties</h3>
+      <ul>
+        <li>Minor damage (e.g. torn page, light stains): <strong>&#8369;50</strong>.</li>
+        <li>Moderate damage (e.g. water damage, broken spine): <strong>&#8369;150</strong>.</li>
+        <li>Severe damage (e.g. missing pages, unreadable): <strong>&#8369;300</strong>.</li>
+      </ul>
+
+      <h3>6.1 Lost Book Penalty</h3>
+      <ul>
+        <li>If a borrowed book is lost, the borrower is charged a fixed penalty of <strong>&#8369;1,000</strong>.</li>
+        <li>The borrower must settle this penalty before they can borrow or reserve another book.</li>
+      </ul>
+
+      <h3>6.2 Expired Reservation Penalty</h3>
+      <ul>
+        <li>A reservation that is not canceled or converted into a borrowing within seven (7) days automatically expires.</li>
+        <li>An expired reservation incurs a penalty of <strong>&#8369;50</strong>.</li>
+        <li>The borrower must settle this penalty before they can borrow or reserve another book.</li>
+      </ul>
+
+      <h3>7. Digital Receipts</h3>
+      <ul>
+        <li>A digital receipt is generated automatically after every successful borrowing transaction.</li>
+        <li>Each receipt contains a unique receipt number, your Student ID, your Full Name, the book title and author, the borrowing date and time, the due date, the borrowing duration, and the transaction status.</li>
+        <li>Receipts are saved permanently to <code>data/library-data.txt</code> and remain accessible through your profile and transaction history after closing the receipt screen, signing out, or restarting the application.</li>
+        <li>Closing a receipt in the browser does not delete the receipt.</li>
+      </ul>
+
+      <h3>8. Data Persistence and Privacy</h3>
+      <ul>
+        <li>All account and transaction records are stored locally in <code>data/library-data.txt</code> on the computer running the server.</li>
+        <li>No data is transmitted to any external server. The application is designed for offline use on a single computer.</li>
+        <li>Because authentication relies on Student ID only (no password), this system is intended for educational demonstration and should not be deployed in a production environment without additional security controls.</li>
+      </ul>
+
+      <h3>9. Acceptance</h3>
+      <p>
+        By checking the "I have read and agree to the Terms and Conditions" box
+        during registration, you confirm that you have read these Terms, that you
+        understand them, and that you agree to comply with all of the rules
+        described above. Failure to comply with these rules may result in
+        borrowing privileges being suspended.
+      </p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-primary" id="closeTermsBtn">I Understand &amp; Agree</button>
+    </div>
+  </div>
+</div>
+
+<!-- =====================  TOAST  ===================== -->
+<div id="toast" class="toast hidden"></div>
+
+<!-- =====================  FOOTER  ===================== -->
+<footer class="footer">
+  <div class="container">
+    <span>&copy; Online Library System</span>
+    <span class="footer-note">All records are saved locally to <code>data/library-data.txt</code></span>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

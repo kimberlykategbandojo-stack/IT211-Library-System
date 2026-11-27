@@ -1,0 +1,130 @@
+<mxfile host="app.diagrams.net" agent="Codex">
+  <diagram id="library-use-case" name="Library Use Case Diagram">
+    <mxGraphModel dx="1291" dy="697" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="700" pageHeight="1373" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#1A1A1A;strokeWidth=2;fontSize=20;fontStyle=1;verticalAlign=top;spacingTop=14;" value="Online Library System" vertex="1">
+          <mxGeometry height="1313" width="430" x="230" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="register" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="Register account" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="login" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="Sign in" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="logout" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="Sign out" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="catalog" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" value="Search, browse and filter catalog" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="details" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" value="View book details and availability" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="325" as="geometry" />
+        </mxCell>
+        <mxCell id="borrow" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" value="Borrow available book" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="reserve" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" value="Reserve a book" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="cancelreserve" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" value="Cancel reservation" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="borrowreserved" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" value="Borrow reserved book" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="return" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" value="Return borrowed book" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="extend" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" value="Extend borrowing" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="715" as="geometry" />
+        </mxCell>
+        <mxCell id="lost" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" value="Report book as lost" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="viewprofile" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;" value="View profile" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="845" as="geometry" />
+        </mxCell>
+        <mxCell id="viewborrowed" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;" value="View current borrowings" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="viewreservations" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;" value="View reservations" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="975" as="geometry" />
+        </mxCell>
+        <mxCell id="history" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;" value="View transaction history" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="receipts" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;" value="View borrowing receipts" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="1105" as="geometry" />
+        </mxCell>
+        <mxCell id="penalties" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;" value="View penalties" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="1170" as="geometry" />
+        </mxCell>
+        <mxCell id="paypenalty" parent="boundary" style="ellipse;whiteSpace=nowrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;" value="Settle penalty (simulated)" vertex="1">
+          <mxGeometry height="48" width="340" x="45" y="1235" as="geometry" />
+        </mxCell>
+        <mxCell id="student" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=16;strokeWidth=2;" value="Student" vertex="1">
+          <mxGeometry height="100" width="50" x="35" y="636.5" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="register">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="catalog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="details">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="borrow">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="reserve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="cancelreserve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a8" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="borrowreserved">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a9" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="return">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a10" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="extend">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a11" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="lost">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a12" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="viewprofile">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a13" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="viewborrowed">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a14" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="viewreservations">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a15" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="history">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a16" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="receipts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a17" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="penalties">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a18" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="paypenalty">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a19" edge="1" parent="1" source="student" style="endArrow=none;startArrow=none;html=1;rounded=0;strokeColor=#555555;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" target="logout">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

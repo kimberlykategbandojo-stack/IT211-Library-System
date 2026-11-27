@@ -25,6 +25,15 @@ Start the server:
 java -cp out LibraryServer
 ```
 
+To run the one-time console borrowing demo instead, compile as above and start:
+
+```powershell
+java -cp out LibraryConsole
+```
+
+Choose login or registration, then select a book by its ID. The console calls
+`LibraryService` for the account and borrowing operations and prints the receipt.
+
 Keep that terminal open while using the website. Open the student website in your browser:
 
 - Library website: <http://localhost:2350>

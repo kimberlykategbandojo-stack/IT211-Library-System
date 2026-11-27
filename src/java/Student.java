@@ -20,11 +20,11 @@ public class Student {
 
     public Student(String studentId, String fullName, String phone,
                    boolean agreedTerms, String registeredAt) {
-        this.studentId = studentId;
-        this.fullName = fullName;
-        this.phone = phone;
-        this.agreedTerms = agreedTerms;
-        this.registeredAt = registeredAt;
+        setStudentId(studentId);
+        setFullName(fullName);
+        setPhone(phone);
+        setAgreedTerms(agreedTerms);
+        setRegisteredAt(registeredAt);
     }
 
     public String getStudentId() {
@@ -32,7 +32,7 @@ public class Student {
     }
 
     public void setStudentId(String studentId) {
-        this.studentId = studentId;
+        this.studentId = Validation.requireStudentId(studentId);
     }
 
     public String getFullName() {
@@ -40,7 +40,7 @@ public class Student {
     }
 
     public void setFullName(String fullName) {
-        this.fullName = fullName;
+        this.fullName = Validation.requireFullName(fullName);
     }
 
     public String getPhone() {
@@ -48,7 +48,7 @@ public class Student {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.phone = Validation.requirePhone(phone);
     }
 
     public boolean isAgreedTerms() {
@@ -56,6 +56,9 @@ public class Student {
     }
 
     public void setAgreedTerms(boolean agreedTerms) {
+        if (!agreedTerms) {
+            throw new IllegalArgumentException("A registered student must agree to the Terms and Conditions.");
+        }
         this.agreedTerms = agreedTerms;
     }
 
@@ -64,6 +67,6 @@ public class Student {
     }
 
     public void setRegisteredAt(String registeredAt) {
-        this.registeredAt = registeredAt;
+        this.registeredAt = Validation.requireTimestamp(registeredAt, "Registration timestamp");
     }
 }

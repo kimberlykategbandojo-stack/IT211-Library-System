@@ -54,6 +54,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -114,6 +115,11 @@ public class LibraryServer {
     private static HttpHandler wrap(ApiHandler h) {
         return ex -> {
             try {
+                if ("OPTIONS".equalsIgnoreCase(ex.getRequestMethod())) {
+                    addCorsHeaders(ex);
+                    ex.sendResponseHeaders(204, -1);
+                    return;
+                }
                 h.handle(ex);
             } catch (Exception e) {
                 sendJson(ex, 500, jsonError("Internal server error: " + e.getMessage()));
@@ -465,13 +471,18 @@ public class LibraryServer {
     private static void sendJson(HttpExchange ex, int status, String body) throws IOException {
         byte[] data = body.getBytes(StandardCharsets.UTF_8);
         ex.getResponseHeaders().add("Content-Type", "application/json; charset=UTF-8");
-        ex.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
-        ex.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Session-Token");
-        ex.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        addCorsHeaders(ex);
         ex.sendResponseHeaders(status, data.length);
         try (OutputStream os = ex.getResponseBody()) {
             os.write(data);
         }
+    }
+
+    private static void addCorsHeaders(HttpExchange ex) {
+        ex.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+        ex.getResponseHeaders().set("Access-Control-Allow-Headers",
+                "Content-Type, Authorization, X-Session-Token");
+        ex.getResponseHeaders().set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     }
 
     private static String jsonError(String msg) {
@@ -505,7 +516,13 @@ public class LibraryServer {
                 return;
             }
 
-            Path file = Paths.get(PUBLIC_DIR, path).normalize();
+            Path publicRoot = findPublicRoot();
+            String relativePath = path.startsWith("/") ? path.substring(1) : path;
+            Path file = publicRoot.resolve(relativePath).normalize();
+            if (!file.startsWith(publicRoot)) {
+                sendJson(ex, 400, jsonError("Bad request."));
+                return;
+            }
             if (!Files.exists(file) || Files.isDirectory(file)) {
                 byte[] notFound = "404 Not Found".getBytes(StandardCharsets.UTF_8);
                 ex.getResponseHeaders().add("Content-Type", "text/plain; charset=UTF-8");
@@ -520,6 +537,30 @@ public class LibraryServer {
             try (OutputStream os = ex.getResponseBody()) {
                 os.write(data);
             }
+        }
+
+        private Path findPublicRoot() throws IOException {
+            Path workingDirectory = Paths.get("").toAbsolutePath().normalize();
+            for (Path directory = workingDirectory; directory != null; directory = directory.getParent()) {
+                Path direct = directory.resolve(PUBLIC_DIR).normalize();
+                if (Files.isRegularFile(direct.resolve("index.html"))) {
+                    return direct;
+                }
+
+                // IDEs often launch a project from its parent workspace folder.
+                try (DirectoryStream<Path> children = Files.newDirectoryStream(directory)) {
+                    for (Path child : children) {
+                        if (!Files.isDirectory(child)) continue;
+                        Path nested = child.resolve(PUBLIC_DIR).normalize();
+                        if (Files.isRegularFile(nested.resolve("index.html"))) {
+                            return nested;
+                        }
+                    }
+                } catch (java.nio.file.AccessDeniedException ignored) {
+                    // Keep checking parent folders when a system folder is restricted.
+                }
+            }
+            throw new IOException("Cannot find src/web/index.html. Run the server from the project folder.");
         }
 
         private String guessMime(String path) {

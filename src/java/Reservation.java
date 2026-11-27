@@ -32,14 +32,14 @@ public class Reservation {
     public Reservation(String reservationId, String studentId, String bookId,
                        String reserveDate, String expiryDate, Status status,
                        int expiredPenalty, boolean paidExpired) {
-        this.reservationId = reservationId;
-        this.studentId = studentId;
-        this.bookId = bookId;
-        this.reserveDate = reserveDate;
-        this.expiryDate = expiryDate;
-        this.status = status;
-        this.expiredPenalty = expiredPenalty;
-        this.paidExpired = paidExpired;
+        setReservationId(reservationId);
+        setStudentId(studentId);
+        setBookId(bookId);
+        setReserveDate(reserveDate);
+        setExpiryDate(expiryDate);
+        setStatus(status);
+        setExpiredPenalty(expiredPenalty);
+        setPaidExpired(paidExpired);
     }
 
     public String getReservationId() {
@@ -47,7 +47,7 @@ public class Reservation {
     }
 
     public void setReservationId(String reservationId) {
-        this.reservationId = reservationId;
+        this.reservationId = Validation.requireText(reservationId, "Reservation ID");
     }
 
     public String getStudentId() {
@@ -55,7 +55,7 @@ public class Reservation {
     }
 
     public void setStudentId(String studentId) {
-        this.studentId = studentId;
+        this.studentId = Validation.requireStudentId(studentId);
     }
 
     public String getBookId() {
@@ -63,7 +63,7 @@ public class Reservation {
     }
 
     public void setBookId(String bookId) {
-        this.bookId = bookId;
+        this.bookId = Validation.requireText(bookId, "Book ID");
     }
 
     public String getReserveDate() {
@@ -71,7 +71,9 @@ public class Reservation {
     }
 
     public void setReserveDate(String reserveDate) {
-        this.reserveDate = reserveDate;
+        String date = Validation.requireDate(reserveDate, "Reservation date");
+        Validation.requireOrderedDates(date, expiryDate, "Expiry date cannot be before reservation date.");
+        this.reserveDate = date;
     }
 
     public Status getStatus() {
@@ -79,7 +81,17 @@ public class Reservation {
     }
 
     public void setStatus(Status status) {
-        this.status = status;
+        Status value = Validation.requireValue(status, "Reservation status");
+        if (this.status == Status.CANCELED && value != Status.CANCELED) {
+            throw new IllegalArgumentException("A canceled reservation cannot be reopened.");
+        }
+        if (this.status == Status.COMPLETED && value != Status.COMPLETED) {
+            throw new IllegalArgumentException("A completed reservation cannot be reopened.");
+        }
+        if (this.status == Status.EXPIRED && value != Status.EXPIRED) {
+            throw new IllegalArgumentException("An expired reservation cannot be reopened.");
+        }
+        this.status = value;
     }
 
     public boolean isActive() {
@@ -91,7 +103,9 @@ public class Reservation {
     }
 
     public void setExpiryDate(String expiryDate) {
-        this.expiryDate = expiryDate;
+        String date = Validation.optionalDate(expiryDate, "Expiry date");
+        Validation.requireOrderedDates(reserveDate, date, "Expiry date cannot be before reservation date.");
+        this.expiryDate = date;
     }
 
     public int getExpiredPenalty() {
@@ -99,7 +113,7 @@ public class Reservation {
     }
 
     public void setExpiredPenalty(int expiredPenalty) {
-        this.expiredPenalty = expiredPenalty;
+        this.expiredPenalty = Validation.requireNonNegative(expiredPenalty, "Expired-reservation penalty");
     }
 
     public boolean isPaidExpired() {
@@ -107,16 +121,24 @@ public class Reservation {
     }
 
     public void setPaidExpired(boolean paidExpired) {
+        if (this.paidExpired && !paidExpired) {
+            throw new IllegalArgumentException("A settled expiry penalty cannot be unpaid.");
+        }
         this.paidExpired = paidExpired;
     }
 
     public static Status statusFromString(String s) {
-        if (s == null) return Status.ACTIVE;
-        switch (s.trim().toUpperCase()) {
-            case "CANCELED": case "CANCELLED": return Status.CANCELED;
-            case "COMPLETED": return Status.COMPLETED;
-            case "EXPIRED": return Status.EXPIRED;
-            default: return Status.ACTIVE;
+        if (s == null || s.trim().isEmpty()) {
+            throw new IllegalArgumentException("Reservation status must not be empty.");
+        }
+        String value = s.trim().toUpperCase();
+        if ("CANCELLED".equals(value)) {
+            value = "CANCELED";
+        }
+        try {
+            return Status.valueOf(value);
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalArgumentException("Invalid reservation status: " + s, ex);
         }
     }
 }

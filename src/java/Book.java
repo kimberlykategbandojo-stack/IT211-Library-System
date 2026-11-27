@@ -32,15 +32,15 @@ public class Book {
     public Book(String bookId, String title, String author, String category,
                 String description, String coverColor, Status status,
                 int totalCopies, int availableCopies) {
-        this.bookId = bookId;
-        this.title = title;
-        this.author = author;
-        this.category = category;
-        this.description = description;
-        this.coverColor = coverColor;
-        this.status = status;
-        this.totalCopies = totalCopies;
-        this.availableCopies = availableCopies;
+        setBookId(bookId);
+        setTitle(title);
+        setAuthor(author);
+        setCategory(category);
+        setDescription(description);
+        setCoverColor(coverColor);
+        setStatus(status);
+        setTotalCopies(totalCopies);
+        setAvailableCopies(availableCopies);
     }
 
     public String getBookId() {
@@ -48,7 +48,7 @@ public class Book {
     }
 
     public void setBookId(String bookId) {
-        this.bookId = bookId;
+        this.bookId = Validation.requireText(bookId, "Book ID");
     }
 
     public String getTitle() {
@@ -56,7 +56,7 @@ public class Book {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = Validation.requireText(title, "Book title");
     }
 
     public String getAuthor() {
@@ -64,7 +64,7 @@ public class Book {
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        this.author = Validation.requireText(author, "Book author");
     }
 
     public String getCategory() {
@@ -72,7 +72,7 @@ public class Book {
     }
 
     public void setCategory(String category) {
-        this.category = category;
+        this.category = Validation.requireText(category, "Book category");
     }
 
     public String getDescription() {
@@ -80,7 +80,7 @@ public class Book {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? "" : description.trim();
     }
 
     public String getCoverColor() {
@@ -88,7 +88,11 @@ public class Book {
     }
 
     public void setCoverColor(String coverColor) {
-        this.coverColor = coverColor;
+        String color = Validation.requireText(coverColor, "Cover color");
+        if (!color.matches("#[0-9A-Fa-f]{6}")) {
+            throw new IllegalArgumentException("Cover color must be a six-digit hexadecimal color.");
+        }
+        this.coverColor = color;
     }
 
     public Status getStatus() {
@@ -96,7 +100,7 @@ public class Book {
     }
 
     public void setStatus(Status status) {
-        this.status = status;
+        this.status = Validation.requireValue(status, "Book status");
     }
 
     public int getTotalCopies() {
@@ -104,6 +108,10 @@ public class Book {
     }
 
     public void setTotalCopies(int totalCopies) {
+        Validation.requireNonNegative(totalCopies, "Total copies");
+        if (totalCopies < availableCopies) {
+            throw new IllegalArgumentException("Total copies cannot be less than available copies.");
+        }
         this.totalCopies = totalCopies;
     }
 
@@ -112,16 +120,22 @@ public class Book {
     }
 
     public void setAvailableCopies(int availableCopies) {
+        Validation.requireNonNegative(availableCopies, "Available copies");
+        if (availableCopies > totalCopies) {
+            throw new IllegalArgumentException("Available copies cannot exceed total copies.");
+        }
         this.availableCopies = availableCopies;
     }
 
     /** Convenience helper used by the file loader. */
     public static Status statusFromString(String s) {
-        if (s == null) return Status.AVAILABLE;
-        switch (s.trim().toUpperCase()) {
-            case "BORROWED": return Status.BORROWED;
-            case "RESERVED": return Status.RESERVED;
-            default: return Status.AVAILABLE;
+        if (s == null || s.trim().isEmpty()) {
+            throw new IllegalArgumentException("Book status must not be empty.");
+        }
+        try {
+            return Status.valueOf(s.trim().toUpperCase());
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalArgumentException("Invalid book status: " + s, ex);
         }
     }
 }

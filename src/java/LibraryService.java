@@ -143,15 +143,15 @@ public class LibraryService {
                             r.setBorrowDate(p.length > 4 ? p[4] : "");
                             r.setDueDate(p.length > 5 ? p[5] : "");
                             r.setExtended(p.length > 6 && "true".equalsIgnoreCase(p[6]));
+                            r.setLost(p.length > 13 && "true".equalsIgnoreCase(p[13]));
+                            r.setLostDate(p.length > 15 ? p[15] : "");
                             r.setReturnDate(p.length > 7 ? p[7] : "");
                             r.setStatus(BorrowingRecord.statusFromString(p.length > 8 ? p[8] : "ACTIVE"));
                             r.setDamageCategory(p.length > 9 ? p[9] : "none");
                             r.setDamagePenalty(p.length > 10 ? parseIntSafe(p[10]) : 0);
                             r.setOverduePenalty(p.length > 11 ? parseIntSafe(p[11]) : 0);
                             r.setReceiptNo(p.length > 12 ? p[12] : "");
-                            r.setLost(p.length > 13 && "true".equalsIgnoreCase(p[13]));
                             r.setLostPenalty(p.length > 14 ? parseIntSafe(p[14]) : 0);
-                            r.setLostDate(p.length > 15 ? p[15] : "");
                             r.setPaidLost(p.length > 16 && "true".equalsIgnoreCase(p[16]));
                             borrowings.put(r.getRecordId(), r);
                             break;
@@ -310,9 +310,14 @@ public class LibraryService {
 
     private static String safe(String s) { return s == null ? "" : s; }
     private static int parseIntSafe(String s) {
-        if (s == null || s.isEmpty()) return 0;
-        try { return Integer.parseInt(s.trim()); }
-        catch (NumberFormatException e) { return 0; }
+        if (s == null || s.trim().isEmpty()) {
+            throw new IllegalArgumentException("Expected a non-negative integer.");
+        }
+        try {
+            return Validation.requireNonNegative(Integer.parseInt(s.trim()), "Stored numeric value");
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid stored integer: " + s, e);
+        }
     }
 
     // =====================================================================
@@ -481,8 +486,12 @@ public class LibraryService {
     //  Session management (very simple - see README for limitations)
     // =====================================================================
     public synchronized String createSession(String studentId) {
+        String id = Validation.requireStudentId(studentId);
+        if (!students.containsKey(id)) {
+            throw new IllegalArgumentException("Cannot create a session for an unregistered student.");
+        }
         String token = UUID.randomUUID().toString().replace("-", "");
-        sessions.put(token, studentId);
+        sessions.put(token, id);
         return token;
     }
 
@@ -510,6 +519,10 @@ public class LibraryService {
         }
         if (phone == null || phone.trim().isEmpty()) {
             return error(res, "Phone Number is required.");
+        }
+        if (!phone.trim().matches("[\\d+()\\-\\s]+")
+                || phone.replaceAll("[^\\d]", "").length() < 7) {
+            return error(res, "Phone Number must contain at least 7 digits and only phone-number characters.");
         }
         if (!agreed) {
             return error(res, "You must agree to the Terms and Conditions before registering.");
@@ -786,8 +799,8 @@ public class LibraryService {
         int overdueDays = computeOverdueDays(rec, LocalDate.now());
         int overduePenalty = overdueDays * OVERDUE_PENALTY_PER_DAY;
 
-        rec.setStatus(BorrowingRecord.Status.RETURNED);
         rec.setReturnDate(todayIso());
+        rec.setStatus(BorrowingRecord.Status.RETURNED);
         rec.setDamageCategory(cat);
         rec.setDamagePenalty(damagePenalty);
         rec.setOverduePenalty(overduePenalty);
@@ -1453,8 +1466,8 @@ public class LibraryService {
         rec.setLost(true);
         rec.setLostPenalty(LOST_BOOK_PENALTY);
         rec.setLostDate(todayIso());
-        rec.setStatus(BorrowingRecord.Status.LOST);
         rec.setReturnDate("");
+        rec.setStatus(BorrowingRecord.Status.LOST);
 
         // The lost copy is removed from the library's inventory.
         Book b = books.get(rec.getBookId());
@@ -1589,12 +1602,12 @@ public class LibraryService {
     }
 
     private synchronized String nextBorrowId() {
-        borrowSeq++;
+        borrowSeq = nextSequenceValue(borrowSeq, "Borrowing record");
         return String.format("BRW-%05d", borrowSeq);
     }
 
     private synchronized String nextReceiptNo() {
-        receiptSeq++;
+        receiptSeq = nextSequenceValue(receiptSeq, "Receipt");
         // Embedding a date prefix + persistent counter guarantees uniqueness
         // across application restarts.
         return String.format("RCP-%s-%05d",
@@ -1603,8 +1616,16 @@ public class LibraryService {
     }
 
     private synchronized String nextReservationId() {
-        reservationSeq++;
+        reservationSeq = nextSequenceValue(reservationSeq, "Reservation");
         return String.format("RSV-%05d", reservationSeq);
+    }
+
+    private static int nextSequenceValue(int current, String field) {
+        Validation.requireNonNegative(current, field + " sequence");
+        if (current == Integer.MAX_VALUE) {
+            throw new IllegalStateException(field + " sequence has reached its maximum value.");
+        }
+        return current + 1;
     }
 
     private static Map<String, Object> error(Map<String, Object> res, String msg) {

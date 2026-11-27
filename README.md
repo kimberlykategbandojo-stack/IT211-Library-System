@@ -29,6 +29,10 @@ Keep that terminal open while using the website. Open the student website in you
 
 - Library website: <http://localhost:2350>
 
+The Java server serves the website and its API on the same port. For local development, the page can also be opened through a separate static server such as VS Code Live Server; browser API requests will still be sent to `http://localhost:2350`.
+
+If launching from an IDE workspace that contains this project in a subfolder, the server searches the workspace and its parent folders for `src/web/index.html`.
+
 To stop the server, press **Ctrl+C** in the terminal.
 
 ## Using the app
@@ -61,7 +65,7 @@ The system stores the sample catalog and student activity in `data/library-data.
 - `src/web/app.js`: browser interactions and API requests
 - `src/java/LibraryServer.java`: Java HTTP server and API routes
 - `src/java/LibraryService.java`: library rules and operations
-- `src/java/`: student, book, borrowing, reservation, receipt, and storage classes
+- `src/java/`: student, book, borrowing, reservation, receipt, validation, and storage classes
 - `data/library-data.txt`: local application data
 - `docs/proposal.md`: project proposal
 - `docs/class-ownership.md`: class assignments

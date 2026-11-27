@@ -31,17 +31,17 @@ public class DigitalReceipt {
                           String bookId, String bookTitle, String author,
                           String borrowDateTime, String dueDate, String duration,
                           String status, String returnDate) {
-        this.receiptNo = receiptNo;
-        this.studentId = studentId;
-        this.studentName = studentName;
-        this.bookId = bookId;
-        this.bookTitle = bookTitle;
-        this.author = author;
-        this.borrowDateTime = borrowDateTime;
-        this.dueDate = dueDate;
-        this.duration = duration;
-        this.status = status;
-        this.returnDate = returnDate == null ? "" : returnDate;
+        setReceiptNo(receiptNo);
+        setStudentId(studentId);
+        setStudentName(studentName);
+        setBookId(bookId);
+        setBookTitle(bookTitle);
+        setAuthor(author);
+        setBorrowDateTime(borrowDateTime);
+        setDueDate(dueDate);
+        setDuration(duration);
+        setStatus(status);
+        setReturnDate(returnDate);
     }
 
     public String getReceiptNo() {
@@ -49,7 +49,7 @@ public class DigitalReceipt {
     }
 
     public void setReceiptNo(String receiptNo) {
-        this.receiptNo = receiptNo;
+        this.receiptNo = Validation.requireText(receiptNo, "Receipt number");
     }
 
     public String getStudentId() {
@@ -57,7 +57,7 @@ public class DigitalReceipt {
     }
 
     public void setStudentId(String studentId) {
-        this.studentId = studentId;
+        this.studentId = Validation.requireStudentId(studentId);
     }
 
     public String getStudentName() {
@@ -65,7 +65,7 @@ public class DigitalReceipt {
     }
 
     public void setStudentName(String studentName) {
-        this.studentName = studentName;
+        this.studentName = Validation.requireFullName(studentName);
     }
 
     public String getBookId() {
@@ -73,7 +73,7 @@ public class DigitalReceipt {
     }
 
     public void setBookId(String bookId) {
-        this.bookId = bookId;
+        this.bookId = Validation.requireText(bookId, "Book ID");
     }
 
     public String getBookTitle() {
@@ -81,7 +81,7 @@ public class DigitalReceipt {
     }
 
     public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
+        this.bookTitle = Validation.requireText(bookTitle, "Book title");
     }
 
     public String getAuthor() {
@@ -89,7 +89,7 @@ public class DigitalReceipt {
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        this.author = Validation.requireText(author, "Book author");
     }
 
     public String getBorrowDateTime() {
@@ -97,7 +97,10 @@ public class DigitalReceipt {
     }
 
     public void setBorrowDateTime(String borrowDateTime) {
-        this.borrowDateTime = borrowDateTime;
+        String timestamp = Validation.requireTimestamp(borrowDateTime, "Borrow timestamp");
+        validateReturnDate(returnDate, timestamp);
+        validateDueDate(dueDate, timestamp);
+        this.borrowDateTime = timestamp;
     }
 
     public String getDueDate() {
@@ -105,7 +108,9 @@ public class DigitalReceipt {
     }
 
     public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
+        String date = Validation.requireDate(dueDate, "Due date");
+        validateDueDate(date, borrowDateTime);
+        this.dueDate = date;
     }
 
     public String getDuration() {
@@ -113,7 +118,11 @@ public class DigitalReceipt {
     }
 
     public void setDuration(String duration) {
-        this.duration = duration;
+        String value = Validation.requireText(duration, "Borrow duration");
+        if (!value.matches("[1-9]\\d* days(?: \\(extended\\))?")) {
+            throw new IllegalArgumentException("Borrow duration must be a positive number of days.");
+        }
+        this.duration = value;
     }
 
     public String getStatus() {
@@ -121,7 +130,11 @@ public class DigitalReceipt {
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        String value = Validation.requireText(status, "Receipt status").toUpperCase();
+        if (!value.matches("ACTIVE|RETURNED|RETURNED-OVERDUE|LOST")) {
+            throw new IllegalArgumentException("Invalid receipt status: " + status);
+        }
+        this.status = value;
     }
 
     public String getReturnDate() {
@@ -129,6 +142,26 @@ public class DigitalReceipt {
     }
 
     public void setReturnDate(String returnDate) {
-        this.returnDate = returnDate == null ? "" : returnDate;
+        String date = Validation.optionalDate(returnDate, "Return date");
+        validateReturnDate(date, borrowDateTime);
+        this.returnDate = date;
+    }
+
+    private static void validateReturnDate(String returnDate, String borrowDateTime) {
+        if (returnDate != null && !returnDate.isEmpty()
+                && borrowDateTime != null && !borrowDateTime.isEmpty()
+                && java.time.LocalDate.parse(returnDate).isBefore(
+                        java.time.LocalDateTime.parse(borrowDateTime).toLocalDate())) {
+            throw new IllegalArgumentException("Return date cannot be before borrow date.");
+        }
+    }
+
+    private static void validateDueDate(String dueDate, String borrowDateTime) {
+        if (dueDate != null && !dueDate.isEmpty()
+                && borrowDateTime != null && !borrowDateTime.isEmpty()
+                && java.time.LocalDate.parse(dueDate).isBefore(
+                        java.time.LocalDateTime.parse(borrowDateTime).toLocalDate())) {
+            throw new IllegalArgumentException("Due date cannot be before borrow date.");
+        }
     }
 }

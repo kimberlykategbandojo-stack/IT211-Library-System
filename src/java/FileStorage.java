@@ -129,6 +129,9 @@ public class FileStorage {
      * write fails for any reason.
      */
     public synchronized void saveAll(StringBuilder content) throws IOException {
+        if (content == null) {
+            throw new IllegalArgumentException("Storage content must not be null.");
+        }
         File dataDir = new File("data");
         if (!dataDir.exists() && !dataDir.mkdirs()) {
             throw new IOException("Could not create data directory: " + dataDir.getAbsolutePath());

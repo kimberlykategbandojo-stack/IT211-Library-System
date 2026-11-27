@@ -8,6 +8,11 @@
 (function () {
   'use strict';
 
+  // The Java server hosts both the API and the website on port 2350.
+  // If the page is opened through a separate static server (such as VS Code
+  // Live Server), send API requests to the Java server instead of that server.
+  const API_BASE = window.location.port === '2350' ? '' : 'http://localhost:2350';
+
   // ---------------------- State ---------------------------------------
   const state = {
     token: localStorage.getItem('ols_token') || null,
@@ -53,7 +58,7 @@
     }
     let res;
     try {
-      res = await fetch(path, opts);
+      res = await fetch(API_BASE + path, opts);
     } catch (error) {
       // Keep form handlers on their normal error path when the server is
       // stopped or the browser cannot reach it (instead of leaving buttons

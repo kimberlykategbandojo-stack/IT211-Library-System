@@ -34,6 +34,17 @@ java -cp out LibraryConsole
 Choose login or registration, then select a book by its ID. The console calls
 `LibraryService` for the account and borrowing operations and prints the receipt.
 
+## Run core class checks
+
+Compile the application and the dependency-free test classes, then run both test
+programs:
+
+```powershell
+javac -d out src\java\*.java src\test\*.java
+java -cp out ValidationTest
+java -cp out LibraryCoreTest
+```
+
 Keep that terminal open while using the website. Open the student website in your browser:
 
 - Library website: <http://localhost:2350>

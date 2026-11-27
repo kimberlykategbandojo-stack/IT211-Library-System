@@ -1,0 +1,357 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="library-class-diagram" name="Class Diagram">
+    <mxGraphModel dx="978" dy="528" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1680" pageHeight="2420" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="e_server_service" edge="1" parent="1" source="server" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.4453125;entryY=0;entryPerimeter=0;" target="service" value="uses service">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="45" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_server_service_mult_0" connectable="0" parent="e_server_service" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="5" y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_server_service_mult_1" connectable="0" parent="e_server_service" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="1" as="geometry">
+            <mxPoint x="5" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_server_storage" edge="1" parent="1" source="server" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=1;exitY=0.4;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;" target="storage" value="uses storage">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="1375" y="138" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_server_storage_mult_0" connectable="0" parent="e_server_storage" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="6" y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_server_storage_mult_1" connectable="0" parent="e_server_storage" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.9999" as="geometry">
+            <mxPoint x="4" y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_server_api" edge="1" parent="1" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;dashed=1;endArrow=open;noEdgeStyle=1;labelBackgroundColor=none;exitX=0;exitY=0.7;exitPerimeter=0;entryX=0.578;entryY=-0.003;entryPerimeter=0;entryDx=0;entryDy=0;" target="api" value="wraps API handlers">
+          <mxGeometry relative="1" x="-0.1613" as="geometry">
+            <mxPoint y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="410" y="201" />
+              <mxPoint x="240" y="201" />
+            </Array>
+            <mxPoint x="610" y="201" as="sourcePoint" />
+            <mxPoint x="240.01999999999998" y="217.20000000000005" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_static_http" edge="1" parent="1" source="static" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;dashed=1;endArrow=block;endFill=0;noEdgeStyle=1;labelBackgroundColor=none;exitX=0;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" target="http" value="implements">
+          <mxGeometry relative="1" x="-0.3049" y="36" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="14" y="95" />
+              <mxPoint x="14" y="435" />
+            </Array>
+            <mxPoint x="69" y="95" as="sourcePoint" />
+            <mxPoint x="69" y="435" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_storage" edge="1" parent="1" source="service" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=1;exitY=0.15;exitPerimeter=0;entryX=0;entryY=0.45;entryPerimeter=0;" target="storage" value="persists data">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="1175" y="474.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_storage_mult_0" connectable="0" parent="e_service_storage" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="4" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_storage_mult_1" connectable="0" parent="e_service_storage" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.9985" as="geometry">
+            <mxPoint x="-7" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_student" edge="1" parent="1" source="service" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=0.1;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;" target="student" value="students">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="534" y="1210" />
+              <mxPoint x="185" y="1210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_student_mult_0" connectable="0" parent="e_service_student" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="7" y="14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_student_mult_1" connectable="0" parent="e_service_student" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="1" as="geometry">
+            <mxPoint x="13" y="-13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_book" edge="1" parent="1" source="service" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=0.22;exitY=1;exitPerimeter=0;entryX=0.733;entryY=0;entryPerimeter=0;entryDx=0;entryDy=0;" target="book" value="books">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="610.8" y="1240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_book_mult_0" connectable="0" parent="e_service_book" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="7" y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_book_mult_1" connectable="0" parent="e_service_book" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="1" as="geometry">
+            <mxPoint x="12" y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_borrow" edge="1" parent="1" source="service" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=0.75;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;" target="borrowing" value="borrowings">
+          <mxGeometry relative="1" y="40" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_borrow_mult_0" connectable="0" parent="e_service_borrow" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="7" y="13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_borrow_mult_1" connectable="0" parent="e_service_borrow" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="1" as="geometry">
+            <mxPoint x="14" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_reserve" edge="1" parent="1" source="service" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=0.94;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;" target="reservation" value="reservations">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="1071.6" y="1210" />
+              <mxPoint x="1380" y="1210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_reserve_mult_0" connectable="0" parent="e_service_reserve" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="8" y="13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_reserve_mult_1" connectable="0" parent="e_service_reserve" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="1" as="geometry">
+            <mxPoint x="19" y="-24" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_receipt" edge="1" parent="1" source="service" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=1;exitY=0.8;exitPerimeter=0;entryX=1;entryY=0.55;entryPerimeter=0;" target="receipt" value="receipts">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="1610" y="1014" />
+              <mxPoint x="1610" y="2210.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_receipt_mult_0" connectable="0" parent="e_service_receipt" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="4" y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_service_receipt_mult_1" connectable="0" parent="e_service_receipt" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="1" as="geometry">
+            <mxPoint x="15" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_student_borrow" edge="1" parent="1" source="student" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=1;exitY=0.2;exitPerimeter=0;entryX=0.12;entryY=0;entryPerimeter=0;" target="borrowing" value="studentId">
+          <mxGeometry relative="1" x="-0.1866" y="10" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="335" y="1382" />
+              <mxPoint x="335" y="1280" />
+              <mxPoint x="836" y="1280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_student_borrow_mult_0" connectable="0" parent="e_student_borrow" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="7" y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_student_borrow_mult_1" connectable="0" parent="e_student_borrow" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="1" as="geometry">
+            <mxPoint x="12" y="-13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_book_borrow" edge="1" parent="1" source="book" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=1;exitY=0.36;exitPerimeter=0;entryX=0;entryY=0.248087;entryPerimeter=0;" target="borrowing" value="bookId">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_book_borrow_mult_0" connectable="0" parent="e_book_borrow" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="5" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_book_borrow_mult_1" connectable="0" parent="e_book_borrow" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="1" as="geometry">
+            <mxPoint x="-15" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_student_reserve" edge="1" parent="1" source="student" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=-0.011;exitY=0.66;exitPerimeter=0;entryX=0.2;entryY=1;entryPerimeter=0;exitDx=0;exitDy=0;" value="studentId" target="reservation">
+          <mxGeometry relative="1" x="0.034" y="15" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="40" y="1478.6" />
+              <mxPoint x="40" y="1810" />
+              <mxPoint x="1160" y="1810" />
+              <mxPoint x="1228" y="1810" />
+            </Array>
+            <mxPoint x="78" y="1480.0000000000002" as="sourcePoint" />
+            <mxPoint x="1227.9999999999998" y="1570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_student_reserve_mult_0" connectable="0" parent="e_student_reserve" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="-18" y="19" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_student_reserve_mult_1" connectable="0" parent="e_student_reserve" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.9996" as="geometry">
+            <mxPoint x="19" y="17" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_book_reserve" edge="1" parent="1" source="book" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=0.796;exitY=0.996;exitPerimeter=0;entryX=0.8;entryY=1;entryPerimeter=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" target="reservation" value="bookId">
+          <mxGeometry relative="1" x="0.0093" y="-10" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="630" y="1880" />
+              <mxPoint x="1482" y="1880" />
+            </Array>
+            <mxPoint x="630" y="1697" as="sourcePoint" />
+            <mxPoint x="1481.9999999999995" y="1680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_book_reserve_mult_0" connectable="0" parent="e_book_reserve" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="10" y="13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_book_reserve_mult_1" connectable="0" parent="e_book_reserve" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.9392" as="geometry">
+            <mxPoint x="19" y="17" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_student_receipt" edge="1" parent="1" source="student" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=0.65;exitY=1;exitPerimeter=0;entryX=0;entryY=0.25;entryPerimeter=0;" target="receipt" value="studentId / name snapshot">
+          <mxGeometry relative="1" x="-0.2096" y="-3" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="213.5" y="2117.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_student_receipt_mult_0" connectable="0" parent="e_student_receipt" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="8" y="13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_student_receipt_mult_1" connectable="0" parent="e_student_receipt" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="1" as="geometry">
+            <mxPoint x="-15" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_book_receipt" edge="1" parent="1" source="book" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=0.25;exitY=1;exitPerimeter=0;entryX=0;entryY=0.65;entryPerimeter=0;" target="receipt" value="bookId / title snapshot">
+          <mxGeometry relative="1" x="0.0823" y="5" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="465" y="2241.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_book_receipt_mult_0" connectable="0" parent="e_book_receipt" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="8" y="13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_book_receipt_mult_1" connectable="0" parent="e_book_receipt" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="1" as="geometry">
+            <mxPoint x="-15" y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_borrow_receipt" edge="1" parent="1" source="borrowing" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;endArrow=none;noEdgeStyle=1;labelBackgroundColor=none;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.5384615384615384;entryY=0;entryPerimeter=0;" target="receipt" value="receiptNo">
+          <mxGeometry relative="1" x="0.4167" y="30" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_borrow_receipt_mult_0" connectable="0" parent="e_borrow_receipt" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="6" y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_borrow_receipt_mult_1" connectable="0" parent="e_borrow_receipt" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=13;fontStyle=1;labelBackgroundColor=none;" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="1" as="geometry">
+            <mxPoint x="15" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_server_static" edge="1" parent="1" source="server" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;dashed=1;endArrow=open;noEdgeStyle=1;labelBackgroundColor=none;exitX=0;exitY=0.2;exitPerimeter=0;entryX=1;entryY=0.5;entryPerimeter=0;" target="static" value="creates handler">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="440" y="94" />
+              <mxPoint x="440" y="95" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="server" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontSize=13;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LibraryServer&lt;/b&gt;&lt;/div&gt;&lt;hr style=&quot;text-align: center;&quot;&gt;- PORT: int {static, readOnly}&lt;br&gt;- PUBLIC_DIR: String {static, readOnly}&lt;br&gt;- storage: FileStorage {static, readOnly}&lt;br&gt;- service: LibraryService {static, readOnly}&lt;hr&gt;+ main(args: String[]): void {static}&lt;br&gt;- wrap(h: ApiHandler): HttpHandler {static}&lt;br&gt;- handleBorrow(ex: HttpExchange): void {static}" vertex="1">
+          <mxGeometry height="220" width="290" x="610" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="api" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontSize=13;fillColor=#f5f5f5;strokeColor=#666666;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;lt;&amp;lt;functional interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LibraryServer.ApiHandler&lt;/b&gt;&lt;/div&gt;&lt;/b&gt;&lt;hr&gt;+ handle(exchange: HttpExchange): void" vertex="1">
+          <mxGeometry height="100" width="260" x="90" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="static" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontSize=13;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LibraryServer.StaticHandler&lt;/b&gt;&lt;/div&gt;&lt;hr style=&quot;text-align: center;&quot;&gt;+ handle(exchange: HttpExchange): void&lt;br&gt;- guessMime(path: String): String" vertex="1">
+          <mxGeometry height="90" width="260" x="90" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="http" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontSize=13;fillColor=#f5f5f5;strokeColor=#666666;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;HttpHandler (JDK)&lt;/b&gt;&lt;/div&gt;&lt;/b&gt;&lt;hr style=&quot;text-align: center;&quot;&gt;+ handle(exchange: HttpExchange): void" vertex="1">
+          <mxGeometry height="110" width="250" x="90" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="service" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontSize=13;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LibraryService&lt;/b&gt;&lt;/div&gt;&lt;hr&gt;+ MAX_ACTIVE_BORROWS: int {static, readOnly}&lt;br&gt;+ MAX_ACTIVE_RESERVATIONS: int {static, readOnly}&lt;br&gt;+ INITIAL_BORROW_DAYS: int {static, readOnly}&lt;br&gt;+ EXTENSION_DAYS: int {static, readOnly}&lt;br&gt;+ OVERDUE_PENALTY_PER_DAY: int {static, readOnly}&lt;br&gt;+ DAMAGE_MINOR_PENALTY: int {static, readOnly}&lt;br&gt;+ DAMAGE_MODERATE_PENALTY: int {static, readOnly}&lt;br&gt;+ DAMAGE_SEVERE_PENALTY: int {static, readOnly}&lt;br&gt;+ LOST_BOOK_PENALTY: int {static, readOnly}&lt;br&gt;+ RESERVATION_EXPIRY_DAYS: int {static, readOnly}&lt;br&gt;+ EXPIRED_RESERVATION_PENALTY: int {static, readOnly}&lt;br&gt;- storage: FileStorage&lt;br&gt;- students: Map&amp;lt;String, Student&amp;gt;&lt;br&gt;- books: Map&amp;lt;String, Book&amp;gt;&lt;br&gt;- borrowings: Map&amp;lt;String, BorrowingRecord&amp;gt;&lt;br&gt;- reservations: Map&amp;lt;String, Reservation&amp;gt;&lt;br&gt;- receipts: Map&amp;lt;String, DigitalReceipt&amp;gt;&lt;br&gt;- borrowSeq: int&lt;br&gt;- receiptSeq: int&lt;br&gt;- reservationSeq: int&lt;br&gt;- sessions: Map&amp;lt;String, String&amp;gt;&lt;hr&gt;+ LibraryService(storage: FileStorage)&lt;br&gt;+ persist(): void&lt;br&gt;+ createSession(studentId: String): String&lt;br&gt;+ studentIdForToken(token: String): String&lt;br&gt;+ destroySession(token: String): void&lt;br&gt;+ registerStudent(studentId: String, fullName: String, phone: String, agreed: boolean): Map&amp;lt;String, Object&amp;gt;&lt;br&gt;+ loginStudent(studentId: String): Map&amp;lt;String, Object&amp;gt;&lt;br&gt;+ listBooks(search: String, category: String): List&amp;lt;Map&amp;lt;String, Object&amp;gt;&amp;gt;&lt;br&gt;+ getBook(bookId: String): Book&lt;br&gt;+ listCategories(): List&amp;lt;String&amp;gt;&lt;br&gt;+ borrowBook(studentId: String, bookId: String): Map&amp;lt;String, Object&amp;gt;&lt;br&gt;+ returnBook(studentId: String, recordId: String, damageCategory: String): Map&amp;lt;String, Object&amp;gt;&lt;br&gt;+ extendBorrowing(studentId: String, recordId: String): Map&amp;lt;String, Object&amp;gt;&lt;br&gt;+ createReservation(studentId: String, bookId: String): Map&amp;lt;String, Object&amp;gt;&lt;br&gt;+ cancelReservation(studentId: String, reservationId: String): Map&amp;lt;String, Object&amp;gt;&lt;br&gt;+ borrowReservedBook(studentId: String, reservationId: String): Map&amp;lt;String, Object&amp;gt;&lt;br&gt;+ getProfile(studentId: String): Map&amp;lt;String, Object&amp;gt;&lt;br&gt;+ getBorrowedBooks(studentId: String): List&amp;lt;Map&amp;lt;String, Object&amp;gt;&amp;gt;&lt;br&gt;+ getReservations(studentId: String): List&amp;lt;Map&amp;lt;String, Object&amp;gt;&amp;gt;&lt;br&gt;+ getTransactionHistory(studentId: String): List&amp;lt;Map&amp;lt;String, Object&amp;gt;&amp;gt;&lt;br&gt;+ getReceipts(studentId: String): List&amp;lt;Map&amp;lt;String, Object&amp;gt;&amp;gt;&lt;br&gt;+ getReceipt(studentId: String, receiptNo: String): Map&amp;lt;String, Object&amp;gt;&lt;br&gt;+ getPenalties(studentId: String): List&amp;lt;Map&amp;lt;String, Object&amp;gt;&amp;gt;&lt;br&gt;+ checkAndExpireReservations(): void&lt;br&gt;+ borrowingBlockedReason(studentId: String): String&lt;br&gt;+ markBookAsLost(studentId: String, recordId: String): Map&amp;lt;String, Object&amp;gt;&lt;br&gt;+ payPenalty(studentId: String, type: String, relatedId: String): Map&amp;lt;String, Object&amp;gt;" vertex="1">
+          <mxGeometry height="830" width="640" x="470" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="storage" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontSize=13;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;FileStorage&lt;/b&gt;&lt;/div&gt;&lt;hr&gt;+ DATA_FILE: String {static, readOnly}&lt;br&gt;+ TMP_FILE: String {static, readOnly}&lt;hr&gt;+ escape(s: String): String {static}&lt;br&gt;+ unescape(s: String): String {static}&lt;br&gt;+ splitRecord(line: String): String[] {static}&lt;br&gt;+ saveAll(content: StringBuilder): void&lt;br&gt;+ readAllLines(): List&amp;lt;String&amp;gt;&lt;br&gt;+ exists(): boolean" vertex="1">
+          <mxGeometry height="210" width="250" x="1250" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="student" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontSize=13;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;b&gt;Student&lt;/b&gt;&lt;hr&gt;- studentId: String&lt;br&gt;- fullName: String&lt;br&gt;- phone: String&lt;br&gt;- agreedTerms: boolean&lt;br&gt;- registeredAt: String&lt;hr&gt;+ Student()&lt;br&gt;+ Student(studentId: String, fullName: String, phone: String, agreedTerms: boolean, registeredAt: String)&lt;br&gt;+ getters/setters for all fields" vertex="1">
+          <mxGeometry height="250" width="190" x="90" y="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="book" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontSize=13;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;b&gt;Book&lt;/b&gt;&lt;hr&gt;- bookId: String&lt;br&gt;- title: String&lt;br&gt;- author: String&lt;br&gt;- category: String&lt;br&gt;- description: String&lt;br&gt;- coverColor: String&lt;br&gt;- status: Status&lt;br&gt;- totalCopies: int&lt;br&gt;- availableCopies: int&lt;hr&gt;+ Book()&lt;br&gt;+ Book(bookId: String, title: String, author: String, category: String, description: String, coverColor: String, status: Status, totalCopies: int, availableCopies: int)&lt;br&gt;+ getters/setters for all fields&lt;br&gt;+ statusFromString(s: String): Status {static}&lt;br&gt;&lt;i&gt;Status: AVAILABLE, BORROWED, RESERVED&lt;/i&gt;" vertex="1">
+          <mxGeometry height="380" width="300" x="390" y="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="borrowing" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontSize=13;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;b&gt;BorrowingRecord&lt;/b&gt;&lt;hr&gt;- recordId: String&lt;br&gt;- studentId: String&lt;br&gt;- bookId: String&lt;br&gt;- borrowDate: String&lt;br&gt;- dueDate: String&lt;br&gt;- extended: boolean&lt;br&gt;- returnDate: String&lt;br&gt;- status: Status&lt;br&gt;- damageCategory: String&lt;br&gt;- damagePenalty: int&lt;br&gt;- overduePenalty: int&lt;br&gt;- receiptNo: String&lt;br&gt;- lost: boolean&lt;br&gt;- lostPenalty: int&lt;br&gt;- lostDate: String&lt;br&gt;- paidLost: boolean&lt;hr&gt;+ BorrowingRecord()&lt;br&gt;+ getters/setters for all fields&lt;br&gt;+ statusFromString(s: String): Status {static}&lt;br&gt;&lt;i&gt;Status: ACTIVE, RETURNED, OVERDUE, LOST&lt;/i&gt;" vertex="1">
+          <mxGeometry height="500" width="300" x="800" y="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="reservation" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontSize=13;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;b&gt;Reservation&lt;/b&gt;&lt;hr&gt;- reservationId: String&lt;br&gt;- studentId: String&lt;br&gt;- bookId: String&lt;br&gt;- reserveDate: String&lt;br&gt;- expiryDate: String&lt;br&gt;- status: Status&lt;br&gt;- expiredPenalty: int&lt;br&gt;- paidExpired: boolean&lt;hr&gt;+ Reservation()&lt;br&gt;+ Reservation(reservationId: String, studentId: String, bookId: String, reserveDate: String, expiryDate: String, status: Status, expiredPenalty: int, paidExpired: boolean)&lt;br&gt;+ getters/setters for all fields&lt;br&gt;+ isActive(): boolean&lt;br&gt;+ statusFromString(s: String): Status {static}&lt;br&gt;&lt;i&gt;Status: ACTIVE, CANCELED, COMPLETED, EXPIRED&lt;/i&gt;" vertex="1">
+          <mxGeometry height="360" width="340" x="1210" y="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="receipt" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontSize=13;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;b&gt;DigitalReceipt&lt;/b&gt;&lt;hr&gt;- receiptNo: String&lt;br&gt;- studentId: String&lt;br&gt;- studentName: String&lt;br&gt;- bookId: String&lt;br&gt;- bookTitle: String&lt;br&gt;- author: String&lt;br&gt;- borrowDateTime: String&lt;br&gt;- dueDate: String&lt;br&gt;- duration: String&lt;br&gt;- status: String&lt;br&gt;- returnDate: String&lt;hr&gt;+ DigitalReceipt()&lt;br&gt;+ DigitalReceipt(receiptNo: String, studentId: String, studentName: String, bookId: String, bookTitle: String, author: String, borrowDateTime: String, dueDate: String, duration: String, status: String, returnDate: String)&lt;br&gt;+ getters/setters for all fields" vertex="1">
+          <mxGeometry height="350" width="260" x="810" y="2040" as="geometry" />
+        </mxCell>
+        <mxCell id="jsonutil" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=10;fontSize=13;fillColor=#f5f5f5;strokeColor=#666666;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LibraryServer.JsonUtil&lt;/b&gt;&lt;/div&gt;&lt;hr&gt;~ toJson(o: Object): String {static}&lt;br&gt;- write(sb: StringBuilder, o: Object): void {static}&lt;br&gt;- quote(s: String): String {static}" vertex="1">
+          <mxGeometry height="110" width="290" x="90" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="e_server_json" edge="1" parent="1" source="server" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555;fontSize=12;dashed=1;endArrow=open;noEdgeStyle=1;labelBackgroundColor=none;exitX=0;exitY=0.95;exitPerimeter=0;entryX=1;entryY=0.5;entryPerimeter=0;" target="jsonutil" value="uses JSON encoder">
+          <mxGeometry relative="1" x="0.0444" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="395" y="259" />
+              <mxPoint x="395" y="615" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
